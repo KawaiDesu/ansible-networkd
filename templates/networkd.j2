@@ -1,0 +1,12 @@
+# {{ ansible_managed }}
+{% for section in item.content %}
+{% for section_name, section_params in section.items() %}
+
+[{{ section_name }}]
+{% for item in section_params %}
+{% for key, value in item.items() %}
+{{ key }}={{ value }}
+{% endfor %}
+{% endfor %}
+{% endfor %}
+{% endfor %}

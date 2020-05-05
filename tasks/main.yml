@@ -1,0 +1,22 @@
+---
+
+- import_tasks: deploy_configs.yml
+
+- import_tasks: remove_unmanaged.yml
+
+- name: networkd | Deploy resolv.conf
+  template:
+    src: resolv.conf.j2
+    dest: /etc/resolv.conf
+    mode: 644
+    owner: root
+    group: root
+
+- name: networkd | Enable and start service
+  systemd:
+    name: systemd-networkd
+    state: started
+    enabled: yes
+
+- name: networkd | Run handlers now
+  meta: flush_handlers

@@ -1,0 +1,20 @@
+---
+- name: networkd | Collect file list in network dir
+  find:
+    path: /etc/systemd/network
+    hidden: yes
+  register: networkd_found_files
+  check_mode: no
+  changed_when: false
+
+- name: networkd | Remove unmanaged files
+  file:
+    path: "/etc/systemd/network/{{ item.path | basename }}"
+    state: absent
+  with_items:
+   - "{{ networkd_found_files.files }}"
+  when:
+    - (item.path) not in ( networkd_deployed_link | json_query('results[].invocation.module_args.dest') | default([]) )
+    - (item.path) not in ( networkd_deployed_netdev | json_query('results[].invocation.module_args.dest') | default([]) )
+    - (item.path) not in ( networkd_deployed_network | json_query('results[].invocation.module_args.dest') | default([]) )
+  notify: networkd | Reload configuration

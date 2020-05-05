@@ -1,0 +1,6 @@
+---
+
+- name: networkd | Reload configuration
+  systemd:
+    name: systemd-networkd
+    state: restarted
