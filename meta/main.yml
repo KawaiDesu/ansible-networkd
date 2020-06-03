@@ -1,0 +1,15 @@
+galaxy_info:
+  author: 'Oleg "Zmey!" Vasiliev'
+  description: An Ansible role for configuring systemd-networkd
+
+  license: MIT
+
+  min_ansible_version: 2.4
+
+  galaxy_tags:
+    - networking
+    - networkd
+    - systemd
+
+dependencies: []
+  

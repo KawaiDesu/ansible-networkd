@@ -17,4 +17,4 @@
     - (item.path) not in ( networkd_deployed_link | json_query('results[].invocation.module_args.dest') | default([]) )
     - (item.path) not in ( networkd_deployed_netdev | json_query('results[].invocation.module_args.dest') | default([]) )
     - (item.path) not in ( networkd_deployed_network | json_query('results[].invocation.module_args.dest') | default([]) )
-  notify: networkd | Reload configuration
+  notify: networkd | Do {{ networkd_apply_action }}

@@ -1,6 +1,17 @@
 ---
 
-- name: networkd | Reload configuration
+- name: networkd | Do restart
   systemd:
     name: systemd-networkd
     state: restarted
+
+# From man:
+# Reload .netdev and .network files. If a new .netdev file is found, then the corresponding netdev is created.
+# Note that even if an existing .netdev is modified or removed, systemd-networkd does not update or remove the netdev.
+# If a new, modified or removed .network file is found, then all interfaces which match the file are reconfigured.
+- name: networkd | Do reload
+  shell: networkctl reload
+
+- name: networkd | Do nothing
+  debug:
+    msg: "Not applying new configuration due to selected action."

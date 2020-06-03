@@ -9,7 +9,7 @@
     group: root
   with_items: "{{ networkd.link | default([]) }}"
   register: networkd_deployed_link
-  notify: networkd | Reload configuration
+  notify: networkd | Do {{ networkd_apply_action }}
 
 - name: networkd | Deploy .netdev configs
   template:
@@ -20,7 +20,7 @@
     group: root
   with_items: "{{ networkd.netdev | default([]) }}"
   register: networkd_deployed_netdev
-  notify: networkd | Reload configuration
+  notify: networkd | Do {{ networkd_apply_action }}
 
 - name: networkd | Deploy .network configs
   template:
@@ -31,4 +31,4 @@
     group: root
   with_items: "{{ networkd.network | default([]) }}"
   register: networkd_deployed_network
-  notify: networkd | Reload configuration
+  notify: networkd | Do {{ networkd_apply_action }}

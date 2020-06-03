@@ -1,0 +1,6 @@
+---
+
+networkd:
+
+# Could be "restart", "reload" or "nothing"
+networkd_apply_action: "restart"
