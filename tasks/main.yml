@@ -15,7 +15,7 @@
   template:
     src: resolv.conf.j2
     dest: /etc/resolv.conf
-    mode: 644
+    mode: 0644
     owner: root
     group: root
   when: networkd_resolv_conf_content is defined

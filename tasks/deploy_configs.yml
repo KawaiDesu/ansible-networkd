@@ -4,7 +4,7 @@
   template:
     src: networkd.j2
     dest: "/etc/systemd/network/{{ item.priority }}-{{ item.name }}.link"
-    mode: 644
+    mode: 0644
     owner: root
     group: root
   with_items: "{{ networkd.link | default([]) }}"
@@ -15,7 +15,7 @@
   template:
     src: networkd.j2
     dest: "/etc/systemd/network/{{ item.priority }}-{{ item.name }}.netdev"
-    mode: 644
+    mode: 0644
     owner: root
     group: root
   with_items: "{{ networkd.netdev | default([]) }}"
@@ -26,7 +26,7 @@
   template:
     src: networkd.j2
     dest: "/etc/systemd/network/{{ item.priority }}-{{ item.name }}.network"
-    mode: 644
+    mode: 0644
     owner: root
     group: root
   with_items: "{{ networkd.network | default([]) }}"
